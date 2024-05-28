@@ -12,13 +12,14 @@ from graphene import (
 
 import gql_objects
 from models import User, Movie, Booking, Like, Review, db_session
+from graphene_sqlalchemy import SQLAlchemyConnectionField
 
 
 class Query(ObjectType):
     user = Field(gql_objects.User, id=ID(required=True))
     movie = Field(gql_objects.Movie, id=ID(required=True))
-    movies = List(gql_objects.Movie)
-    reviews = List(gql_objects.Review)
+    movies = SQLAlchemyConnectionField(gql_objects.Movie.connection)
+    reviews = SQLAlchemyConnectionField(gql_objects.Review.connection)
     bookings = List(gql_objects.Booking, user_id=ID(required=True))
 
     def resolve_user(parent, info, id):
@@ -26,12 +27,6 @@ class Query(ObjectType):
 
     def resolve_movie(parent, info, id):
         return Movie.query.get(id)
-
-    def resolve_movies(parent, info):
-        return Movie.query.all()
-
-    def resolve_reviews(parent, info):
-        return Review.query.all()
 
     def resolve_bookings(parent, info, user_id):
         return Booking.query.filter_by(user_id=user_id).all()

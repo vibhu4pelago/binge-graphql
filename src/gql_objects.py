@@ -1,5 +1,6 @@
 from graphene import ObjectType, Field, List
 from graphene_sqlalchemy import SQLAlchemyObjectType
+from graphene.relay import Node
 
 from models import (
     User as UserModel,
@@ -21,6 +22,7 @@ class Like(SQLAlchemyObjectType):
 class Review(SQLAlchemyObjectType):
     class Meta:
         model = ReviewModel
+        interfaces = (Node,)
 
     user = Field(lambda: User)
     movie = Field(lambda: Movie)
@@ -46,6 +48,7 @@ class User(SQLAlchemyObjectType):
 class Movie(SQLAlchemyObjectType):
     class Meta:
         model = MovieModel
+        interfaces = (Node,)
 
     likes = List(Like)
     reviews = List(Review)
