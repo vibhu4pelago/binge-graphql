@@ -1,16 +1,14 @@
 from sqlalchemy import (
     Column,
-    Integer,
-    String,
-    Enum,
     DateTime,
     ForeignKey,
-    create_engine,
+    Integer,
     MetaData,
+    String,
+    create_engine,
 )
-from sqlalchemy.orm import relationship, scoped_session, sessionmaker
-
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 
 engine = create_engine("sqlite:///db.sqlite3", convert_unicode=True)
 db_session = scoped_session(

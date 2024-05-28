@@ -1,14 +1,12 @@
-from graphene import ObjectType, Field, List
-from graphene_sqlalchemy import SQLAlchemyObjectType
+from graphene import Field, List
 from graphene.relay import Node
+from graphene_sqlalchemy import SQLAlchemyObjectType
 
-from models import (
-    User as UserModel,
-    Movie as MovieModel,
-    Like as LikeModel,
-    Review as ReviewModel,
-    Booking as BookingModel,
-)
+from models import Booking as BookingModel
+from models import Like as LikeModel
+from models import Movie as MovieModel
+from models import Review as ReviewModel
+from models import User as UserModel
 
 
 class Like(SQLAlchemyObjectType):

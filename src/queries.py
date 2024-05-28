@@ -1,18 +1,18 @@
 from graphene import (
-    ObjectType,
-    Mutation,
-    Field,
     ID,
-    Int,
-    String,
     DateTime,
-    Schema,
+    Field,
+    Int,
     List,
+    Mutation,
+    ObjectType,
+    Schema,
+    String,
 )
+from graphene_sqlalchemy import SQLAlchemyConnectionField
 
 import gql_objects
-from models import User, Movie, Booking, Like, Review, db_session
-from graphene_sqlalchemy import SQLAlchemyConnectionField
+from models import Booking, Like, Movie, Review, User, db_session
 
 
 class Query(ObjectType):
