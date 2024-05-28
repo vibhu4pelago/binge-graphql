@@ -13,7 +13,6 @@ from models import (
 class Like(SQLAlchemyObjectType):
     class Meta:
         model = LikeModel
-        fields = ("user", "movie")
 
     user = Field(lambda: User)
     movie = Field(lambda: Movie)
@@ -22,7 +21,6 @@ class Like(SQLAlchemyObjectType):
 class Review(SQLAlchemyObjectType):
     class Meta:
         model = ReviewModel
-        fields = ("id", "user", "movie", "rating", "text")
 
     user = Field(lambda: User)
     movie = Field(lambda: Movie)
@@ -31,7 +29,6 @@ class Review(SQLAlchemyObjectType):
 class Booking(SQLAlchemyObjectType):
     class Meta:
         model = BookingModel
-        fields = ("id", "user", "movie", "time")
 
     user = Field(lambda: User)
     movie = Field(lambda: Movie)
@@ -40,14 +37,6 @@ class Booking(SQLAlchemyObjectType):
 class User(SQLAlchemyObjectType):
     class Meta:
         model = UserModel
-        fields = (
-            "id",
-            "name",
-            "email",
-            "likes",
-            "reviews",
-            "bookings",
-        )
 
     likes = List(Like)
     reviews = List(Review)
@@ -57,14 +46,6 @@ class User(SQLAlchemyObjectType):
 class Movie(SQLAlchemyObjectType):
     class Meta:
         model = MovieModel
-        fields = (
-            "id",
-            "name",
-            "genre",
-            "likes",
-            "reviews",
-            "bookings",
-        )
 
     likes = List(Like)
     reviews = List(Review)
