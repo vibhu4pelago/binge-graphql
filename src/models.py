@@ -12,7 +12,7 @@ from sqlalchemy.orm import relationship, scoped_session, sessionmaker
 
 from sqlalchemy.ext.declarative import declarative_base
 
-engine = create_engine("sqlite:///database.sqlite3", convert_unicode=True)
+engine = create_engine("sqlite:///db.sqlite3", convert_unicode=True)
 db_session = scoped_session(
     sessionmaker(autocommit=False, autoflush=False, bind=engine)
 )
