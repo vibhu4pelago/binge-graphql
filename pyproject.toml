@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "binge-graphql"
+version = "0.1.0"
+description = "Graphql version of a tiny part of a cinephiles' app"
+authors = ["Vibhu Agarwal <vibhu.agarwal@pelago.co>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask-sqlalchemy = "2.5.1"
+graphene-sqlalchemy = "3.0.0b4"
+graphql-server = "3.0.0b5"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
