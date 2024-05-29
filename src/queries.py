@@ -12,21 +12,29 @@ from graphene import (
 from graphene_sqlalchemy import SQLAlchemyConnectionField
 
 import gql_objects
+from constants import ErrorCodes
+from gql_errors import BingeError
 from models import Booking, Like, Movie, Review, User, db_session
 
 
 class Query(ObjectType):
-    user = Field(gql_objects.User, id=ID(required=True))
-    movie = Field(gql_objects.Movie, id=ID(required=True))
+    user = Field(gql_objects.UserPayload, id=ID(required=True))
+    movie = Field(gql_objects.MoviePayload, id=ID(required=True))
     movies = SQLAlchemyConnectionField(gql_objects.Movie.connection)
     reviews = SQLAlchemyConnectionField(gql_objects.Review.connection)
     bookings = List(gql_objects.Booking, user_id=ID(required=True))
 
     def resolve_user(parent, info, id):
-        return User.query.get(id)
+        user = User.query.get(id)
+        if user is not None:
+            return user
+        return BingeError(code=ErrorCodes.NotFound, error_message="User not found")
 
     def resolve_movie(parent, info, id):
-        return Movie.query.get(id)
+        movie = Movie.query.get(id)
+        if movie is not None:
+            return movie
+        return BingeError(code=ErrorCodes.NotFound, error_message="Movie not found")
 
     def resolve_bookings(parent, info, user_id):
         return Booking.query.filter_by(user_id=user_id).all()

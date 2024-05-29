@@ -33,4 +33,3 @@ If we want to make it persistent we can mount a volume on to the container and a
 ### Thoughts & Doubts:
 - User based serialized fields in response? Is there a better way than using Unions?
 - Different mutations for Create, Update and Delete?
-- TODO: Error Handling (... need Unions)?

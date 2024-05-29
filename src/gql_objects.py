@@ -1,7 +1,8 @@
-from graphene import Field, List
+from graphene import Field, List, Union
 from graphene.relay import Node
 from graphene_sqlalchemy import SQLAlchemyObjectType
 
+from gql_errors import BingeError
 from models import Booking as BookingModel
 from models import Like as LikeModel
 from models import Movie as MovieModel
@@ -51,3 +52,13 @@ class Movie(SQLAlchemyObjectType):
     likes = List(Like)
     reviews = List(Review)
     bookings = List(Booking)
+
+
+class UserPayload(Union):
+    class Meta:
+        types = (User, BingeError)
+
+
+class MoviePayload(Union):
+    class Meta:
+        types = (Movie, BingeError)
