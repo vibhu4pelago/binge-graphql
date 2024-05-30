@@ -1,0 +1,27 @@
+mutation NewMovie {
+  createMovie(genre: "Comedy", name: "Movie Name") {
+    id
+    name
+  }
+}
+
+mutation NewUser {
+  createUser(email: "useremail@domain", name: "User Name") {
+    id
+    name
+  }
+}
+
+mutation NewReview {
+  createReview(movieId: 1, userId: 1, rating: 8, text: "good enough to watch twice") {
+    id
+    user {
+      name
+    }
+    movie {
+      name
+    }
+    rating
+    text
+  }
+}

@@ -1,0 +1,26 @@
+query GetUser {
+  user(id: 3) {
+    ... on BingeError {
+      code
+      errorMessage
+    }
+    ...on User{
+    id
+    name
+    likes {
+      movie {
+        name
+      }
+    }
+    reviews {
+        movie {
+          name
+        }
+        rating
+        text
+    }
+    bookings {
+      id
+    }}
+  }
+}

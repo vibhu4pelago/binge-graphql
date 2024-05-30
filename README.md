@@ -16,10 +16,13 @@ Fetching the apt content for different screens fits a good use case of using Gra
 1. Build the docker image: `./docker_build.sh`
 2. Run the container `docker run -d -p 5000:5000 --name=binge-graphql binge-graphql`
 
-Access GraphiQL interface on host's http://127.0.0.1:5000/graphql
-
 Note: The DB would be ephemeral just like the container as it'd a sqlite DB within the container.
 If we want to make it persistent we can mount a volume on to the container and adjust the db path in app accordingly.
+
+### Play around
+Access GraphiQL interface on host's http://127.0.0.1:5000/graphql
+
+You can play around with the data using some of the queries mentioned in [test_queries](./test_queries) dir.
 
 ### Learnings
 - **GraphQL** - Awesome way to give more control to client and have a clear schema

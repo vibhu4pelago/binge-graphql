@@ -1,0 +1,21 @@
+query AllReviews {
+  reviews {
+    edges {
+      node {
+        id
+        user {
+          name
+        }
+        movie {
+          name
+        }
+        rating
+        text
+      }
+    }
+    pageInfo {
+      startCursor
+      endCursor
+    }
+  }
+}

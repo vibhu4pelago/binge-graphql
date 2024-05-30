@@ -1,0 +1,32 @@
+query AllMovies {
+  movies {
+    edges {
+      node {
+        id
+        name
+        genre
+        likes {
+          user {
+            name
+          }
+        }
+        reviews {
+            user {
+              name
+            }
+            rating
+            text
+        }
+        bookings {
+          user {
+            name
+          }
+        }
+      }
+    }
+    pageInfo {
+      startCursor
+      endCursor
+    }
+  }
+}
